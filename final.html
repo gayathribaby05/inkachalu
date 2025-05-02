@@ -1,23 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Combined Content</title>
 </head>
 <body>
+    <div id="combinedContent">
+        </div>
 
-    <h1>Combined Content from Multiple Pages</h1>
+    <script>
+        async function loadHTMLFiles() {
+            const combinedDiv = document.getElementById('combinedContent');
+            const folderPath = 'automation/'; // Adjust if needed
+            const htmlFiles = ['Sell.html', 'Marketing blog.html']; // List your HTML files
 
-    <div style="border: 1px solid #ccc; margin-bottom: 20px;">
-        <h2>Sell.html</h2>
-        <iframe src="Sel.html" width="500%" height="100" frameborder="0"></iframe>
-    </div>
+            for (const file of htmlFiles) {
+                try {
+                    const response = await fetch(folderPath + file);
+                    if (!response.ok) {
+                        console.error(`Failed to fetch ${file}: ${response.status}`);
+                        continue;
+                    }
+                    const content = await response.text();
+                    combinedDiv.innerHTML += content;
+                    combinedDiv.innerHTML += '<hr>'; // Optional separator
+                } catch (error) {
+                    console.error(`Error fetching ${file}:`, error);
+                }
+            }
+        }
 
-    <div style="border: 1px solid #ccc;">
-        <h2>Marketing blog.html</h2>
-        <iframe src="blog.html" width="500%" height="100" frameborder="0"></iframe>
-    </div>
-
+        document.addEventListener('DOMContentLoaded', loadHTMLFiles);
+    </script>
 </body>
 </html>
