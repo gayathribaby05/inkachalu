@@ -1,203 +1,242 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=800, initial-scale=1.0">
-  <title>Marketing AI Agent Guide</title>
-  <meta name="description" content="A comprehensive guide to Marketing AI Agents: Revolutionizing Digital Marketing">
-  <style>
-    body { 
-      font-family: 'Inter', system-ui, -apple-system, sans-serif; 
-      line-height: 1.6; 
-      padding: 20px; 
-      max-width: 800px; 
-      margin: 0 auto;
-      color: #333;
-      background-color: #f9fafb;
-    }
-    h1 { 
-      color: #1a1a1a; 
-      margin-bottom: 1.5rem;
-      font-size: 2.5em;
-      line-height: 1.2;
-    }
-    h2 { 
-      color: #2a2a2a; 
-      margin-top: 2.5rem;
-      font-size: 1.75em;
-    }
-    h3 {
-      color: #3a3a3a;
-      margin-top: 1.5rem;
-      font-size: 1.25em;
-    }
-    .image { 
-      width: 100%; 
-      max-width: 800px; 
-      height: auto; 
-      margin: 24px 0; 
-      border-radius: 12px;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    }
-    .content { 
-      font-size: 1.1em; 
-      color: #444;
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    }
-    .section { 
-      margin-bottom: 3rem;
-    }
-    .highlight {
-      background: #f3f4f6;
-      padding: 1.5rem;
-      border-radius: 8px;
-      margin: 1rem 0;
-    }
-    .read-more {
-      background: #3b82f6;
-      color: white;
-      border: none;
-      padding: 0.75rem 1.5rem;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 500;
-      transition: all 0.2s;
-    }
-    .read-more:hover {
-      background: #2563eb;
-      transform: translateY(-1px);
-    }
-    .expandable-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease-out;
-      opacity: 0;
-    }
-    .expandable-content.expanded {
-      max-height: 1000px;
-      opacity: 1;
-      transition: max-height 0.5s ease-in, opacity 0.3s ease-in;
-    }
-    .tag {
-      display: inline-block;
-      background: #e5e7eb;
-      padding: 0.25rem 0.75rem;
-      border-radius: 9999px;
-      font-size: 0.875rem;
-      margin-right: 0.5rem;
-      color: #4b5563;
-    }
-  </style>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css"
+        integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
+
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper.js -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js"
+        integrity="sha384-BOsAfwzjNJHrJ8cZidOg56tcQWfp6y72vEJ8xQ9w6Quywb24iOsW913URv1IS4GD" crossorigin="anonymous">
+    </script>
+
+    <!-- Option 2: Separate Popper.js and Bootstrap JS
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js" integrity="sha384-5h4UG+6GOuV9qXh6HqOLwZMY4mnLPraeTrjT5v07o347pj6IkfuoASuGBhfDsp3d" crossorigin="anonymous"></script>
+    -->
+
+    <title>Home</title>
 </head>
+
 <body>
-  <h1>Marketing AI Agents: The Future of Digital Marketing</h1>
-  <img class="image" src="https://media.licdn.com/dms/image/v2/D560BAQF45cp_RFZpnQ/company-logo_100_100/company-logo_100_100/0/1715885396777/iamx_retail_logo?e=1750896000&v=beta&t=MnLBchxb3zD52O7H0wDKTjX_PbDKBiMJvZkA5oTOL5M" alt="AI-powered marketing visualization with digital interfaces">
-  
-  <div class="content">
-    Title: Congratulations to the Finalists of the ReTech Startup Awards 2024!
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light my_nav fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">My Blog</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-toggle="dropdown" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <div class="input-group">
+                        <input type="search" class="form-control form-control-sm" placeholder="Search Here"
+                            aria-label="Search Here" aria-describedby="button-addon2">
+                        <button class="btn btn-success btn-sm" type="submit" id="button-addon2"><i
+                                class="fa fa-search"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <!-- navbar -->
 
-Image URL: https://media.lidcn.com/dms/image/v2/D560BAQF45cp_RFZpnQ/company-logo_100_100/0/17158853967777/iamx_retail_logo
+    <!-- banner -->
+    <header class="main-header">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-8">
+                    <div class="header-text-holder">
+                        <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. </h1>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus, modi porro ipsa
+                            perferendis quidem temporibus quia sit enim rem architecto adipisci illum doloribus corrupti
+                            veritatis, a quas ducimus explicabo repudiandae!
+                        </p>
+                    </div>
+                    <div class="subscribe-holder">
+                        <a href="#" class="btn btn-info" data-toggle="modal" data-target="#subscribeModal">Subscribe for
+                            Latest Updates</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- banner -->
 
----
+    <!-- body content -->
+    <section class="home-body-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-3">
+                    <div class="card my_card">
+                        <div class="card-body">
+                            <img src="https://source.unsplash.com/random/600x314" class="img-fluid" alt="Random Image">
+                            <h3 class="card-title">Blog Post Title</h3>
+                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos autem
+                                enim natus est minus quam aliquid, a officia error reiciendis tenetu</p>
+                            <a href="#" class="btn btn-sm btn-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="card my_card">
+                        <div class="card-body">
+                            <img src="https://source.unsplash.com/random/600x314" class="img-fluid" alt="Random Image">
+                            <h3 class="card-title">Blog Post Title</h3>
+                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos autem
+                                enim natus est minus quam aliquid, a officia error reiciendis tenetu</p>
+                            <a href="#" class="btn btn-sm btn-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="card my_card">
+                        <div class="card-body">
+                            <img src="https://source.unsplash.com/random/600x314" class="img-fluid" alt="Random Image">
+                            <h3 class="card-title">Blog Post Title</h3>
+                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos autem
+                                enim natus est minus quam aliquid, a officia error reiciendis tenetu</p>
+                            <a href="#" class="btn btn-sm btn-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="card my_card">
+                        <div class="card-body">
+                            <img src="https://source.unsplash.com/random/600x314" class="img-fluid" alt="Random Image">
+                            <h3 class="card-title">Blog Post Title</h3>
+                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos autem
+                                enim natus est minus quam aliquid, a officia error reiciendis tenetu</p>
+                            <a href="#" class="btn btn-sm btn-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="card my_card">
+                        <div class="card-body">
+                            <img src="https://source.unsplash.com/random/600x314" class="img-fluid" alt="Random Image">
+                            <h3 class="card-title">Blog Post Title</h3>
+                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos autem
+                                enim natus est minus quam aliquid, a officia error reiciendis tenetu</p>
+                            <a href="#" class="btn btn-sm btn-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="card my_card">
+                        <div class="card-body">
+                            <img src="https://source.unsplash.com/random/600x314" class="img-fluid" alt="Random Image">
+                            <h3 class="card-title">Blog Post Title</h3>
+                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos autem
+                                enim natus est minus quam aliquid, a officia error reiciendis tenetu</p>
+                            <a href="#" class="btn btn-sm btn-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="card my_card">
+                        <div class="card-body">
+                            <img src="https://source.unsplash.com/random/600x314" class="img-fluid" alt="Random Image">
+                            <h3 class="card-title">Blog Post Title</h3>
+                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos autem
+                                enim natus est minus quam aliquid, a officia error reiciendis tenetu</p>
+                            <a href="#" class="btn btn-sm btn-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <div class="card my_card">
+                        <div class="card-body">
+                            <img src="https://source.unsplash.com/random/600x314" class="img-fluid" alt="Random Image">
+                            <h3 class="card-title">Blog Post Title</h3>
+                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos autem
+                                enim natus est minus quam aliquid, a officia error reiciendis tenetu</p>
+                            <a href="#" class="btn btn-sm btn-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- body content -->
 
-The ReTech Startup Awards 2024 have reached an exhilarating milestone, and we are absolutely thrilled to celebrate the outstanding achievements of the innovative companies that have made it to the finals. This prestigious event honors the visionaries, trailblazers, and disruptors who are revolutionizing the retail technology landscape with their cutting-edge AI-driven applications, creative solutions, and exemplary dedication to advancing retail technology.
+    <!-- footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="copy text-center">
+                        <p><small>Copyright &copy; 2020. All Right Reserved.</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer -->
 
-Meet the Finalists:
+    <!-- Subscribe Modal -->
+    <div class="modal fade" id="subscribeModal" tabindex="-1" aria-labelledby="subscribeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="subscribeModalLabel">Subscribe for Newsletters</h5>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <input type="text" class="form-control form-control-sm" placeholder="Enter Email Address">
+                        </div>
+                        <div class="mb-3">
+                            <input type="submit" class="btn btn-sm btn-success btn-block" value="Subscribe Now">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Subscribe Modal -->
 
-- and Innovations Pvt. Ltd.
-- OfIntelligence Technologies Pvt. Ltd.
-- Pvt. Ltd.
-- Insights LLP
-- Technology Pvt. Ltd.
 
-These finalists were selected for their innovative approach, impact, and potential to transform the retail technology landscape. Their contributions range from advanced AI-driven applications to customer insight analytics, next-generation retail platforms, and much more.
-
-Why These Companies Stand Out:
-
-Each finalist has demonstrated impressive innovation and potential to transform retail technology landscapes. Their work is characterized by:
-- Cutting-edge AI-powered applications that enhance personalization and optimize inventory management.
-- Tools offering deep customer insights to help businesses make smarter decisions.
-- Efficient retail operations solutions, from logistics to payment processing.
-- Sustainable and smart tech innovations that bring efficiency and cost savings to retailers and customers alike.
-
-Recognizing Innovation and Excellence in Retail Technology:
-
-The ReTech Startup Awards 2024 highlight innovation, creativity, and dedication of emerging startups ready to revolutionize retail technology. This celebration not only acknowledges success but also inspires a new generation of entrepreneurs and tech enthusiasts.
-
-About the ReTech Startup Awards 2024:
-
-The awards recognize promising startups bringing disruptive innovations to the marketing and retail tech ecosystem. They offer a platform to showcase creative ideas, pioneer networking opportunities, and provide visibility among industry leaders and investors.
-
-Get Involved & Support Innovation:
-
-Join us in congratulating all finalists for their remarkable achievements! We encourage tech enthusiasts, industry leaders, and investors to learn more about these startups and support their journey towards making retail technology smarter, more efficient, and customer-centric.
-
-Stay tuned for the grand final announcement and get involved in celebrating the future of retail technology!
-
-SEO Keywords: ReTech Startup Awards 2024, retail technology innovation, AI-driven retail applications, retail tech startups, retail technology landscape, innovation in retail technology, retail technology awards.
-
----
-
-The requested blog post content is available in the GitHub file "post.html" and can be referred to or published directly from that source. If you want, I can also provide the raw HTML content or assist with publishing the blog post.
-  </div>
-
-  <script>
-    function toggleContent(section) {
-      const content = document.getElementById(\Title: Congratulations to the Finalists of the ReTech Startup Awards 2024!
-
-Image URL: https://media.lidcn.com/dms/image/v2/D560BAQF45cp_RFZpnQ/company-logo_100_100/0/17158853967777/iamx_retail_logo
-
----
-
-The ReTech Startup Awards 2024 have reached an exhilarating milestone, and we are absolutely thrilled to celebrate the outstanding achievements of the innovative companies that have made it to the finals. This prestigious event honors the visionaries, trailblazers, and disruptors who are revolutionizing the retail technology landscape with their cutting-edge AI-driven applications, creative solutions, and exemplary dedication to advancing retail technology.
-
-Meet the Finalists:
-
-- and Innovations Pvt. Ltd.
-- OfIntelligence Technologies Pvt. Ltd.
-- Pvt. Ltd.
-- Insights LLP
-- Technology Pvt. Ltd.
-
-These finalists were selected for their innovative approach, impact, and potential to transform the retail technology landscape. Their contributions range from advanced AI-driven applications to customer insight analytics, next-generation retail platforms, and much more.
-
-Why These Companies Stand Out:
-
-Each finalist has demonstrated impressive innovation and potential to transform retail technology landscapes. Their work is characterized by:
-- Cutting-edge AI-powered applications that enhance personalization and optimize inventory management.
-- Tools offering deep customer insights to help businesses make smarter decisions.
-- Efficient retail operations solutions, from logistics to payment processing.
-- Sustainable and smart tech innovations that bring efficiency and cost savings to retailers and customers alike.
-
-Recognizing Innovation and Excellence in Retail Technology:
-
-The ReTech Startup Awards 2024 highlight innovation, creativity, and dedication of emerging startups ready to revolutionize retail technology. This celebration not only acknowledges success but also inspires a new generation of entrepreneurs and tech enthusiasts.
-
-About the ReTech Startup Awards 2024:
-
-The awards recognize promising startups bringing disruptive innovations to the marketing and retail tech ecosystem. They offer a platform to showcase creative ideas, pioneer networking opportunities, and provide visibility among industry leaders and investors.
-
-Get Involved & Support Innovation:
-
-Join us in congratulating all finalists for their remarkable achievements! We encourage tech enthusiasts, industry leaders, and investors to learn more about these startups and support their journey towards making retail technology smarter, more efficient, and customer-centric.
-
-Stay tuned for the grand final announcement and get involved in celebrating the future of retail technology!
-
-SEO Keywords: ReTech Startup Awards 2024, retail technology innovation, AI-driven retail applications, retail tech startups, retail technology landscape, innovation in retail technology, retail technology awards.
-
----
-
-The requested blog post content is available in the GitHub file "post.html" and can be referred to or published directly from that source. If you want, I can also provide the raw HTML content or assist with publishing the blog post.-content);
-      const button = content.previousElementSibling;
-      const isExpanded = content.classList.contains('expanded');
-      
-      content.classList.toggle('expanded');
-      button.textContent = isExpanded ? 'Read More' : 'Show Less';
-    }
-  </script>
 </body>
+
 </html>
