@@ -2,6 +2,34 @@
 <html>
 <head>
     <title>Combined Content</title>
+    <style>
+        #combinedContent {
+            display: flex;
+            flex-direction: column; /* Arrange content vertically */
+            gap: 20px; /* Add space between each file's content */
+            padding: 20px; /* Add some padding around the combined content */
+            font-family: sans-serif; /* A more readable default font */
+        }
+
+        .file-container {
+            border: 1px solid #ccc; /* Optional: Add a border around each file's content */
+            padding: 15px;
+            border-radius: 5px; /* Optional: Rounded corners */
+            background-color: #f9f9f9; /* Optional: Light background */
+        }
+
+        .file-container h2 {
+            margin-top: 0; /* Remove default top margin for the heading */
+            color: #333; /* Darker heading text */
+            border-bottom: 2px solid #eee; /* Subtle separator for the heading */
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+        hr {
+            display: none; /* Hide the default <hr> if using spacing and containers */
+        }
+    </style>
 </head>
 <body>
     <div id="combinedContent">
@@ -18,13 +46,28 @@
                     const response = await fetch(folderPath + file);
                     if (!response.ok) {
                         console.error(`Failed to fetch ${file}: ${response.status}`);
+                        combinedDiv.innerHTML += `<p class="error">Failed to load: ${file}</p>`;
                         continue;
                     }
                     const content = await response.text();
-                    combinedDiv.innerHTML += content;
-                    combinedDiv.innerHTML += '<hr>'; // Optional separator
+
+                    // Create a container for each file's content
+                    const fileContainer = document.createElement('div');
+                    fileContainer.classList.add('file-container');
+
+                    // Add a heading with the file name (you might want to adjust this)
+                    const heading = document.createElement('h2');
+                    heading.textContent = file; // Display the filename as the heading
+                    fileContainer.appendChild(heading);
+
+                    // Append the file content
+                    fileContainer.innerHTML += content;
+
+                    combinedDiv.appendChild(fileContainer);
+
                 } catch (error) {
                     console.error(`Error fetching ${file}:`, error);
+                    combinedDiv.innerHTML += `<p class="error">Error loading: ${file}</p>`;
                 }
             }
         }
