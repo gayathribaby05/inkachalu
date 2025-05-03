@@ -1,6 +1,59 @@
 
+  <div class="blog-post" id="blog-first-blog-post">
+    <h2>First Blog Post</h2>
+    <div class="blog-date">May 1, 2025</div>
+    <div class="blog-content">
+      <p>This is the content of my first blog post about marketing strategies.</p>
+    </div>
+  </div>
 
-  <div class="blog-post" id="blog-1746267619538">
+
+  <div class="blog-post" id="blog-second-blog-post">
+    <h2>Second Blog Post</h2>
+    <div class="blog-date">May 2, 2025</div>
+    <div class="blog-content">
+      <p>This post discusses retail trends and how to capitalize on them.</p>
+    </div>
+  </div>
+
+
+  <div class="blog-post" id="blog-third-blog-post">
+    <h2>Third Blog Post</h2>
+    <div class="blog-date">May 3, 2025</div>
+    <div class="blog-content">
+      <p>Learn how to supercharge your sales with these techniques.</p>
+    </div>
+  </div>
+
+
+  <div class="blog-post" id="blog-fourth-blog-post">
+    <h2>Fourth Blog Post</h2>
+    <div class="blog-date">May 4, 2025</div>
+    <div class="blog-content">
+      <p>Advanced techniques for smarter marketing campaigns.</p>
+    </div>
+  </div>
+
+
+  <div class="blog-post" id="blog-fifth-blog-post">
+    <h2>Fifth Blog Post</h2>
+    <div class="blog-date">May 5, 2025</div>
+    <div class="blog-content">
+      <p>How to sell more effectively in today's market.</p>
+    </div>
+  </div>
+
+
+  <div class="blog-post" id="blog-sixth-blog-post">
+    <h2>Sixth Blog Post</h2>
+    <div class="blog-date">May 6, 2025</div>
+    <div class="blog-content">
+      <p>The future of retail marketing and what to expect.</p>
+    </div>
+  </div>
+
+
+  <div class="blog-post" id="blog-1746267894137">
     <h2>Scale</h2>
     <div class="blog-date">3/5/2025</div>
     <div class="blog-content">
@@ -255,33 +308,12 @@ If you require further tailored content or assistance, please feel free to ask.-
       border-bottom: 2px solid #eaeaea;
     }
     
-    .file-container {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      background-color: #fff;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-      overflow: hidden;
-    }
-    
-    .file-container h2 {
-      margin: 0;
-      padding: 15px;
-      background-color: #f8f9fa;
-      color: #2c3e50;
-      font-size: 18px;
-      border-bottom: 1px solid #eaeaea;
-    }
-    
-    .file-content {
-      padding: 15px;
-    }
-    
-    /* Blog grid layout */
+    /* Blog grid layout - 3 columns */
     .blog-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-      grid-gap: 25px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      margin-bottom: 30px;
     }
     
     .blog-post {
@@ -322,36 +354,36 @@ If you require further tailored content or assistance, please feel free to ask.-
       flex-grow: 1;
     }
     
-    /* Ensure consistent formatting for content */
-    .blog-content p, .file-content p {
+    .blog-content p {
       margin-bottom: 15px;
       line-height: 1.6;
     }
     
-    .error {
-      color: #dc3545;
-      font-weight: bold;
-      padding: 15px;
+    /* Static content display */
+    .static-content {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .static-content h2 {
+      margin-top: 0;
+      color: #2c3e50;
     }
     
     /* Responsive layout */
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
       .blog-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
       }
     }
     
-    /* Container for iframe content */
-    .iframe-container {
-      height: 300px;
-      width: 100%;
-      overflow: hidden;
-    }
-    
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
+    @media (max-width: 600px) {
+      .blog-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -361,44 +393,29 @@ If you require further tailored content or assistance, please feel free to ask.-
     <div class="section">
       <h1 class="section-title">Website Content</h1>
       
-      <!-- Sell.html content -->
-      <div class="file-container">
-        <h2>Sell.html</h2>
-        <div class="iframe-container">
-          <iframe src="Sell.html" frameborder="0"></iframe>
-        </div>
+      <div class="static-content">
+        <h2>Sell.html Content</h2>
+        <div class="content-placeholder">[Sell.html content would be displayed here]</div>
       </div>
       
-      <!-- Marketing blog.html content -->
-      <div class="file-container">
-        <h2>Marketing blog.html</h2>
-        <div class="iframe-container">
-          <iframe src="Marketing blog.html" frameborder="0"></iframe>
-        </div>
+      <div class="static-content">
+        <h2>Marketing blog.html Content</h2>
+        <div class="content-placeholder">[Marketing blog.html content would be displayed here]</div>
       </div>
       
-      <!-- Smarter.html content -->
-      <div class="file-container">
-        <h2>Smarter.html</h2>
-        <div class="iframe-container">
-          <iframe src="Smarter.html" frameborder="0"></iframe>
-        </div>
+      <div class="static-content">
+        <h2>Smarter.html Content</h2>
+        <div class="content-placeholder">[Smarter.html content would be displayed here]</div>
       </div>
       
-      <!-- Supercharge.html content -->
-      <div class="file-container">
-        <h2>Supercharge.html</h2>
-        <div class="iframe-container">
-          <iframe src="Supercharge.html" frameborder="0"></iframe>
-        </div>
+      <div class="static-content">
+        <h2>Supercharge.html Content</h2>
+        <div class="content-placeholder">[Supercharge.html content would be displayed here]</div>
       </div>
       
-      <!-- Retail.html content -->
-      <div class="file-container">
-        <h2>Retail.html</h2>
-        <div class="iframe-container">
-          <iframe src="Retail.html" frameborder="0"></iframe>
-        </div>
+      <div class="static-content">
+        <h2>Retail.html Content</h2>
+        <div class="content-placeholder">[Retail.html content would be displayed here]</div>
       </div>
     </div>
     
@@ -408,9 +425,6 @@ If you require further tailored content or assistance, please feel free to ask.-
       <div class="blog-grid">
         <!-- Blog posts will be inserted here -->
         
-        
-        <!-- This comment marks where to insert the next blog post -->
-        <!-- NEXT_BLOG_INSERTION_POINT -->
       </div>
     </div>
   </div>
