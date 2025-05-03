@@ -54,7 +54,7 @@
 </html>
  --> --> -->
 
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -64,13 +64,11 @@
       font-family: sans-serif;
       margin: 20px;
     }
-
     .blog-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr); /* 3 per row */
+      grid-template-columns: repeat(3, 1fr);
       gap: 20px;
     }
-
     .blog-frame {
       border: 1px solid #ccc;
       border-radius: 8px;
@@ -81,7 +79,6 @@
       display: flex;
       flex-direction: column;
     }
-
     .blog-title {
       padding: 10px;
       background-color: #f2f2f2;
@@ -89,29 +86,24 @@
       font-weight: bold;
       font-size: 18px;
     }
-
     .blog-title a {
       text-decoration: none;
       color: #0077cc;
     }
-
     .blog-title a:hover {
       text-decoration: underline;
     }
-
     iframe {
       width: 100%;
       height: 100%;
       border: none;
       flex: 1;
     }
-
     @media (max-width: 900px) {
       .blog-grid {
         grid-template-columns: repeat(2, 1fr);
       }
     }
-
     @media (max-width: 600px) {
       .blog-grid {
         grid-template-columns: 1fr;
@@ -122,6 +114,9 @@
 <body>
   <h1>All Blog Posts</h1>
   <div class="blog-grid">
+
+    <!-- BLOG-START -->
+
     <div class="blog-frame">
       <div class="blog-title">
         <a href="Retail.html" target="_blank">Retail</a>
@@ -156,6 +151,10 @@
       </div>
       <iframe src="Marketing blog.html"></iframe>
     </div>
+
+    <!-- BLOG-END -->
+
   </div>
 </body>
 </html>
+
