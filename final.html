@@ -1,179 +1,54 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Combined Content</title>
-    <style>
-        /* Styles from Code1 */
-        #combinedContent { display: flex; flex-direction: column; gap: 20px; padding: 20px; font-family: sans-serif; max-width: 900px; margin: 0 auto; }
-        .file-container { border: 1px solid #ccc; padding: 15px; border-radius: 5px; background-color: #f9f9f9; }
-        .file-container h2 { margin-top: 0; color: #333; border-bottom: 2px solid #eee; padding-bottom: 5px; margin-bottom: 10px; }
-        .error { color: red; font-weight: bold; }
-        hr { display: none; }
-        /* Styles extracted from n8n post will be added here by the script */
-    </style>
+  <meta charset="UTF-8">
+  <title>Combined Content</title>
+  <style>
+    #combinedContent {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px;
+      font-family: sans-serif;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .file-container {
+      border: 1px solid #ccc;
+      padding: 15px;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+
+    .file-container h2 {
+      margin-top: 0;
+      color: #333;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 5px;
+      margin-bottom: 10px;
+    }
+
+    .error {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-    <div id="combinedContent">
-        </div>
-
-    <script>
-        try { // Add a try...catch around the whole script block for debugging
-            const combinedDiv = document.getElementById('combinedContent');
-            if (!combinedDiv) throw new Error("Element with ID 'combinedContent' not found.");
-
-            // Function to load HTML files
-            async function loadHTMLFiles() {
-                const folderPath = 'automation/'; // Adjust if needed
-                const htmlFiles = ['Sell.html', 'Marketing blog.html'];
-
-                for (const file of htmlFiles) {
-                    let fileContainer; // Define outside try for use in catch
-                    try {
-                        const response = await fetch(folderPath + file);
-                        if (!response.ok) {
-                            throw new Error(`HTTP error! status: ${response.status}`);
-                        }
-                        const content = await response.text();
-
-                        fileContainer = document.createElement('div');
-                        fileContainer.classList.add('file-container');
-
-                        const heading = document.createElement('h2');
-                        heading.textContent = file;
-                        fileContainer.appendChild(heading);
-
-                        const contentDiv = document.createElement('div');
-                        contentDiv.innerHTML = content; // Assumes fragment; use DOMParser if full HTML
-                        fileContainer.appendChild(contentDiv);
-
-                        combinedDiv.appendChild(fileContainer);
-
-                    } catch (error) {
-                        console.error(`Error loading file '${file}':`, error);
-                        if (!fileContainer) { // If container wasn't even created
-                           fileContainer = document.createElement('div');
-                           fileContainer.classList.add('file-container');
-                        }
-                         // Clear potential partial content and add error message
-                        fileContainer.innerHTML = `<h2>${file}</h2><p class="error">Error loading: ${error.message}</p>`;
-                        // Ensure container is added even if fetch failed partially
-                        if (!fileContainer.parentNode) {
-                           combinedDiv.appendChild(fileContainer);
-                        }
-                    }
-                }
-            }
-
-            // Function to add the n8n-generated blog post
-            function addN8nBlogPost(title, htmlContentString) {
-                let fileContainer; // Define outside try for use in catch
-                try {
-                    if (!title || typeof title !== 'string') throw new Error('Invalid title provided.');
-                    if (!htmlContentString || typeof htmlContentString !== 'string') throw new Error('Invalid HTML content provided.');
-
-                    const parser = new DOMParser();
-                    const doc = parser.parseFromString(htmlContentString, 'text/html');
-
-                    // Check if parsing produced a valid document
-                     if (doc.body.querySelector('parsererror')) {
-                         console.error("DOMParser error for n8n content:", doc.body.querySelector('parsererror').textContent);
-                         throw new Error("Failed to parse n8n HTML content.");
-                     }
-
-
-                    // --- Extract and Inject Styles ---
-                    const styles = doc.head.querySelectorAll('style');
-                    styles.forEach(style => {
-                        document.head.appendChild(style.cloneNode(true));
-                    });
-
-                    // --- Create Container ---
-                    fileContainer = document.createElement('div');
-                    fileContainer.classList.add('file-container', 'n8n-post-container');
-
-                    // --- Add Heading ---
-                    const heading = document.createElement('h2');
-                    heading.textContent = title;
-                    fileContainer.appendChild(heading);
-
-                    // --- Extract and Append Body Content ---
-                    // Use doc.body itself if it contains the desired structure directly
-                    // Or querySelector if there's a specific wrapper like '.n8n-post-body'
-                    const bodyContentWrapper = doc.body.querySelector('.n8n-post-body') || doc.body.firstChild;
-                    if (bodyContentWrapper) {
-                       fileContainer.appendChild(bodyContentWrapper.cloneNode(true));
-                    } else {
-                       console.warn("Could not find expected body content structure in n8n post.");
-                       // Fallback: Append all body children (might include unwanted scripts initially)
-                       while (doc.body.firstChild) {
-                           fileContainer.appendChild(doc.body.firstChild);
-                       }
-                    }
-
-                    // --- Append Container to Page ---
-                    combinedDiv.appendChild(fileContainer);
-
-                    // --- Extract and Execute Scripts ---
-                    const scripts = doc.body.querySelectorAll('script'); // Get scripts from original parsed doc
-                    scripts.forEach(script => {
-                        const newScript = document.createElement('script');
-                        if (script.src) {
-                            newScript.src = script.src;
-                            newScript.async = false; // Try executing sequentially if order matters
-                        } else {
-                            newScript.textContent = script.textContent;
-                        }
-                         // Append to the specific container to keep context closer,
-                         // though document.body is also common.
-                        fileContainer.appendChild(newScript);
-                         // Alternatively, to ensure global scope: document.body.appendChild(newScript);
-                         // Remove the original script from the appended content if it was copied via innerHTML/firstChild
-                         const appendedScript = fileContainer.querySelector('script[src="'+script.src+'"]') || fileContainer.querySelector('script:not([src])');
-                         if (appendedScript && appendedScript.textContent === script.textContent) {
-                            // appendedScript.remove(); // Be careful with this, might remove the wrong one if content is identical
-                         }
-                    });
-
-
-                } catch (error) {
-                    console.error('Error adding n8n blog post:', error);
-                    if (!fileContainer) {
-                        fileContainer = document.createElement('div');
-                        fileContainer.classList.add('file-container');
-                    }
-                     fileContainer.innerHTML = `<h2>${title || 'n8n Post'}</h2><p class="error">Error adding content: ${error.message}</p>`;
-                     if (!fileContainer.parentNode) {
-                         combinedDiv.appendChild(fileContainer);
-                     }
-                }
-            }
-
-            // --- Execution ---
-
-            // 1. Add the n8n post immediately.
-            // Use JSON.stringify to safely escape the content for embedding in the script.
-            const postTitle = JSON.parse(` "Marketing AI Agent Guide" `);
-            const postHtml = JSON.parse(` "\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=800, initial-scale=1.0\">\n  <title>Marketing AI Agent Guide</title> <meta name=\"description\" content=\"A comprehensive guide to Marketing AI Agents: Revolutionizing Digital Marketing\">\n  <style>\n    /* Styles specific to this n8n post */\n    /* Add a unique prefix or class to avoid global conflicts */\n    .n8n-post-body h1 { color: #1a1a1a; margin-bottom: 1.5rem; font-size: 2.5em; line-height: 1.2; }\n    .n8n-post-body h2 { color: #2a2a2a; margin-top: 2.5rem; font-size: 1.75em; }\n    .n8n-post-body h3 { color: #3a3a3a; margin-top: 1.5rem; font-size: 1.25em; }\n    .n8n-post-body .image { width: 100%; max-width: 800px; height: auto; margin: 24px 0; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }\n    .n8n-post-body .content { font-size: 1.1em; color: #444; padding: 1rem 0; }\n    .n8n-post-body .section { margin-bottom: 3rem; }\n    .n8n-post-body .highlight { background: #f3f4f6; padding: 1.5rem; border-radius: 8px; margin: 1rem 0; }\n    .n8n-post-body .read-more { background: #3b82f6; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 6px; cursor: pointer; font-weight: 500; transition: all 0.2s; }\n    .n8n-post-body .read-more:hover { background: #2563eb; transform: translateY(-1px); }\n    .n8n-post-body .expandable-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; opacity: 0; }\n    .n8n-post-body .expandable-content.expanded { max-height: 1000px; opacity: 1; transition: max-height 0.5s ease-in, opacity 0.3s ease-in; }\n    .n8n-post-body .tag { display: inline-block; background: #e5e7eb; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.875rem; margin-right: 0.5rem; color: #4b5563; }\n  </style>\n</head>\n<body>\n  <div class=\"n8n-post-body\"> <h1>Marketing AI Agent Guide</h1>\n    <img class=\"image\" src=\"https://media.licdn.com/dms/image/v2/D5622AQGnM1Soo6Z3WQ/feedshare-shrink_800/feedshare-shrink_800/0/1719221019523?e=1748476800&v=beta&t=UOvAMjdirTdwM8CtyF7oxBQHZnjkQgjfjfNZdpj6SsQ\" alt=\"Marketing AI Agent Guide\">\n    <div class=\"content\">\n      Title: Hefty Costs Can Hold You Back - iAmX Meets You Where You Are\n\nIn the competitive world of retail businesses, scaling up and improving operations can often be hampered by hefty costs. Traditional access control systems and retail management solutions typically require significant upfront investment, making it difficult for many businesses, especially the small and medium-sized enterprises, to embrace transformative technology. Recognizing this barrier, we have designed iAmX to meet you exactly where you are, eliminating the worry of incurring additional expenditure to drive meaningful change.\n\nAll that is needed is a smartphone, tablet, or laptop along with an internet connection. It’s that simple.\n\nWhether you are a beloved neighborhood store or a retail giant, iAmX allows you to get started right now without breaking the bank. This approach not only democratizes advanced retail and access control technology but also empowers businesses at all scales to operate securely and efficiently.\n\nWhy Hefty Costs Can Hold You Back\n\nRetail businesses operate with high stakes and often on tight margins. Deploying sophisticated access control systems and retail management platforms traditionally involves large capital expenditures on hardware, infrastructure, and ongoing maintenance. Additionally, the complexity of such systems can require hiring specialized staff or consultants, adding to operational expenses.\n\nFor many businesses, these costs translate into delays or abandonment in adopting technology that could otherwise enhance security, streamline operations, and ultimately drive higher revenue. This hesitation creates a competitive disadvantage in a landscape where consumers expect seamless, secure, and efficient service.\n\nHow iAmX Changes the Game\n\niAmX is tailored to be flexible and adaptable to diverse retail environments. Whether your business involves managing multiple locations or a single outlet, requiring individualized role-based access controls or broad inventory oversight, iAmX provides the tools necessary without the heavy price tag.\n\nKey benefits of iAmX’s role-based access control software include:\n\n- Enhanced Security: Limit sensitive information and critical functions to authorized personnel only, reducing the risk of breaches.\n- Improved Compliance: Maintain audit trails and control access to meet regulatory requirements efficiently.\n- Operational Efficiency: Streamline employee training and reduce mistakes by ensuring staff only sees relevant data.\n- Scalability: Easily adjust access settings as your organizational structure evolves or grows.\n- User-Friendly Interface: Manage roles and permissions without needing technical expertise.\n\nTech-Driven Retail Access Control Without the Financial Burden\n\nDespite being feature-rich and customizable, iAmX is designed to be accessible without upfront capital expenditure. Accessible through common digital devices, iAmX requires no specialized hardware installation, significantly lowering adoption barriers. The cloud-based architecture supports integrations with existing systems, ensuring a smooth transition and continuous operation without disruption.\n\nNow, you have a cost-effective way to achieve high-standard security and operational control tailored specifically for your unique business needs.\n\nGet Started Today - Completely Free for a Limited Time\n\nTo eliminate any hesitation and make the journey of digital transformation straightforward, iAmX is being offered completely free for a limited period. This allows retailers of all sizes to experience the benefits risk-free and evaluate how the platform fits into their operational strategies.\n\nAll you need to do is sign up at our website and start empowering your team and business with the next-generation access control system that grows with you.\n\nP.S. Remember, this offer is available for a limited time only. Don’t miss your chance to enhance your retail operations without worrying about hefty costs.\n\nSEO Keywords: retail access control, role-based access control, customizable access control software, affordable retail security solutions, cloud-based retail technology, scalable access control for retail.\n\nImage suggestion: A modern retail store manager comfortably managing store operations on a tablet while customers shop, symbolizing easy and cost-effective technology adoption.\n\nImage URL (example): https://cdn.pixabay.com/photo/2019/08/04/20/56/access-4383043_1280.jpg\n\n---\n\nIn summary, iAmX addresses one of the biggest hurdles in upgrading retail operational technology — cost. With a flexible, smartphone-friendly platform, retailers can securely control access, manage teams efficiently, and scale effortlessly, all while keeping expenses low. Get started with iAmX today and drive change without financial worry.\n    </div>\n    <script>\n      // Make sure any functions here use unique names or are properly scoped\n      function toggleN8nContent(sectionId) {\n         console.log(\"Toggling content for:\", sectionId);\n         // Find content relative to the button if possible\n         const button = document.querySelector('[data-n8n-toggle-id=\"' + sectionId + '\"]');\n         if (!button) return;\n         const content = document.getElementById(sectionId + '-content'); // Assuming ID exists\n         if (!content) return;\n\n         const isExpanded = content.classList.contains('expanded');\n         content.classList.toggle('expanded');\n         button.textContent = isExpanded ? 'Read More' : 'Show Less';\n       }\n       // Add event listeners dynamically if needed, e.g.:\n       // document.querySelectorAll('.n8n-post-body .read-more[data-n8n-toggle-id]').forEach(btn => {\n       //   const targetId = btn.getAttribute('data-n8n-toggle-id');\n       //   if(targetId) {\n       //     btn.addEventListener('click', () => toggleN8nContent(targetId));\n       //   }\n       // });\n    </script>\n  </div>\n</body>\n</html>\n" `);
-            addN8nBlogPost(postTitle, postHtml);
-
-            // 2. Load the static files - Use DOMContentLoaded OR run after adding n8n post
-            // Running immediately might be fine if n8n post addition is synchronous enough.
-            // Using DOMContentLoaded ensures the initial DOM is ready, but might race with async fetch.
-            if (document.readyState === 'loading') { // Only add listener if needed
-                 document.addEventListener('DOMContentLoaded', loadHTMLFiles);
-            } else { // DOM already ready
-                 loadHTMLFiles(); // Run function directly
-            }
-
-
-        } catch (scriptError) {
-             console.error("Critical error in main script block:", scriptError);
-             // Display error on page as fallback
-             document.body.innerHTML = '<p style="color: red; font-weight: bold;">A critical script error occurred. Check the console.</p>' +
-                                       '<pre>' + scriptError.stack + '</pre>';
-        }
-    </script>
+  <div id="combinedContent">
+    <div class="file-container">
+      <h2>Sell.html</h2>
+      <p class="error">Failed to load content: $http is not defined</p>
+    </div>
+    <div class="file-container">
+      <h2>Marketing blog.html</h2>
+      <p class="error">Failed to load content: $http is not defined</p>
+    </div>
+    <div class="file-container">
+      <h2>Congratulations</h2>
+      <p class="error">Failed to load content: $http is not defined</p>
+    </div>
+  </div>
 </body>
 </html>
