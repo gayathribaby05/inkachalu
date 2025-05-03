@@ -2,25 +2,66 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Seamless</title>
+  <title>Combined Content</title>
   <style>
-    body {
+    #combinedContent {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px;
       font-family: sans-serif;
-      margin: 40px auto;
-      max-width: 800px;
-      line-height: 1.6;
-      padding: 0 10px;
+      max-width: 900px;
+      margin: 0 auto;
     }
-    h1 {
-      border-bottom: 1px solid #ddd;
+    .file-container {
+      border: 1px solid #ccc;
+      padding: 15px;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+    .file-container h2 {
+      margin-top: 0;
+      color: #333;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 5px;
+      margin-bottom: 10px;
+    }
+    .error {
+      color: red;
+      font-weight: bold;
+    }
+    .blog-date {
+      font-size: 0.8em;
+      color: #666;
+      margin-top: -5px;
+      margin-bottom: 10px;
     }
   </style>
 </head>
 <body>
-  <h1>Seamless</h1>
-  <div class="blog-date">3/5/2025</div>
-  <div class="blog-content">
+  <div id="combinedContent">
+    <!-- Sell.html content -->
+    <div class="file-container">
+      <h2>Sell.html</h2>
+      <div>
+        <iframe src="Sell.html" width="100%" height="300" frameborder="0"></iframe>
+      </div>
+    </div>
     
+    <!-- Marketing blog.html content -->
+    <div class="file-container">
+      <h2>Marketing blog.html</h2>
+      <div>
+        <iframe src="Marketing blog.html" width="100%" height="300" frameborder="0"></iframe>
+      </div>
+    </div>
+    
+    <!-- New blog post - added automatically -->
+    <div class="file-container" id="blog-1746263241429">
+      <h2>Seamless</h2>
+      <div class="blog-date">3/5/2025</div>
+      <div class="blog-content">
+        
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -220,6 +261,11 @@ If you would like further assistance with SEO optimization or content formatting
 </body>
 </html>
 
+      </div>
+    </div>
+    
+    <!-- This comment marks where to insert the next blog post -->
+    <!-- NEXT_BLOG_INSERTION_POINT -->
   </div>
 </body>
 </html>
