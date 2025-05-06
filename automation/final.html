@@ -107,7 +107,7 @@
 </html> -->
  -->
 
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -116,14 +116,15 @@
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #f9fafb;
-      color: #333;
       margin: 0;
       padding: 0;
+      color: #333;
     }
 
     header {
       text-align: center;
-      padding: 80px 20px 20px;
+      padding: 60px 20px 20px;
+      background-color: #f0f4f8;
     }
 
     header h1 {
@@ -133,12 +134,12 @@
 
     header p {
       font-size: 16px;
-      color: #666;
+      color: #555;
     }
 
     .blog-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 30px;
       padding: 40px;
       max-width: 1200px;
@@ -146,29 +147,49 @@
     }
 
     .blog-card {
-      background-color: #fff;
-      border: 1px solid #e5e7eb;
+      background-color: #ffffff;
       border-radius: 12px;
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.06);
       transition: transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
     }
 
     .blog-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 12px 20px rgba(0,0,0,0.1);
     }
 
-    .blog-card a {
-      text-decoration: none;
+    .blog-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .blog-content {
+      padding: 20px;
+      flex: 1;
+    }
+
+    .blog-title {
+      font-size: 20px;
+      margin: 0 0 10px;
       color: #2563eb;
-      font-weight: bold;
-      font-size: 18px;
     }
 
-    .blog-card a:hover {
+    .blog-title a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .blog-title a:hover {
       text-decoration: underline;
+    }
+
+    .blog-description {
+      font-size: 14px;
+      color: #555;
     }
 
     footer {
@@ -176,6 +197,7 @@
       padding: 40px 20px;
       font-size: 14px;
       color: #aaa;
+      background-color: #f0f0f0;
     }
   </style>
 </head>
@@ -183,25 +205,51 @@
 
   <header>
     <h1>Explore Our Latest Blogs</h1>
-    <p>Your AI-powered assistant is here to help! Dive into industry insights, innovations, and smarter solutions.</p>
+    <p>Insights, innovations, and AI solutions tailored for smarter businesses.</p>
   </header>
 
   <div class="blog-grid">
+
     <div class="blog-card">
-      <a href="Retail.html" target="_blank">Retail</a>
+      <img src="images/retail.jpg" alt="Retail Blog Image">
+      <div class="blog-content">
+        <h2 class="blog-title"><a href="Retail.html" target="_blank">Retail</a></h2>
+        <p class="blog-description">Discover how AI is transforming the retail industry through automation and customer personalization.</p>
+      </div>
     </div>
+
     <div class="blog-card">
-      <a href="Sell.html" target="_blank">Sell</a>
+      <img src="images/sell.jpg" alt="Sell Blog Image">
+      <div class="blog-content">
+        <h2 class="blog-title"><a href="Sell.html" target="_blank">Sell</a></h2>
+        <p class="blog-description">Boost your sales process with predictive analytics and smart automation powered by AI.</p>
+      </div>
     </div>
+
     <div class="blog-card">
-      <a href="Smarter.html" target="_blank">Smarter</a>
+      <img src="images/smarter.jpg" alt="Smarter Blog Image">
+      <div class="blog-content">
+        <h2 class="blog-title"><a href="Smarter.html" target="_blank">Smarter</a></h2>
+        <p class="blog-description">Learn how smarter decision-making with AI gives your business a competitive edge.</p>
+      </div>
     </div>
+
     <div class="blog-card">
-      <a href="Supercharge.html" target="_blank">Supercharge</a>
+      <img src="images/supercharge.jpg" alt="Supercharge Blog Image">
+      <div class="blog-content">
+        <h2 class="blog-title"><a href="Supercharge.html" target="_blank">Supercharge</a></h2>
+        <p class="blog-description">Supercharge operations and deliver value faster with scalable AI solutions.</p>
+      </div>
     </div>
+
     <div class="blog-card">
-      <a href="Marketing blog.html" target="_blank">Marketing Blog</a>
+      <img src="images/marketing.jpg" alt="Marketing Blog Image">
+      <div class="blog-content">
+        <h2 class="blog-title"><a href="Marketing blog.html" target="_blank">Marketing Blog</a></h2>
+        <p class="blog-description">Explore how marketing teams leverage AI to enhance campaigns and ROI insights.</p>
+      </div>
     </div>
+
   </div>
 
   <footer>
@@ -210,3 +258,4 @@
 
 </body>
 </html>
+
